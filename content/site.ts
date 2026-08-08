@@ -154,9 +154,9 @@ export const work = {
       client: 'North & Beyond',
       description: 'Itinerary and package design.',
       outcome: 'A print-ready template system the team refills for every new departure.',
-      // Placeholder — swap for the real project image, same dimensions.
+      link: { label: 'check on their handles →', href: 'https://www.instagram.com/p/Dbw6RbZER_j/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==' },
       image: {
-        src: '/work/projects/project-01.png',
+        src: '/work/projects/northandbeyond.png',
         alt: 'Itinerary and package design work sample',
         width: 1200,
         height: 900,
@@ -169,7 +169,7 @@ export const work = {
       outcome: 'Enquiries now come through a form instead of scattered DMs.',
       link: { label: 'View site →', href: 'https://www.climbexadventures.com' },
       image: {
-        src: '/work/projects/project-02.png',
+        src: '/work/projects/climbexadventures.png',
         alt: 'Website design and build work sample',
         width: 1200,
         height: 900,

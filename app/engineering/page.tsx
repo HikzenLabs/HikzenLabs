@@ -8,6 +8,7 @@ import CTA from '@/components/CTA'
 import Footer from '@/components/Footer'
 import Reveal from '@/components/Reveal'
 import { stack, engineeringHero } from '@/content/site'
+import WhatWeDo from '@/components/WhatWeDo'
 
 const description = engineeringHero.body
 
@@ -29,6 +30,7 @@ export default function Engineering() {
       <main>
         <Hero variant="engineering" />
         <Capabilities />
+        <WhatWeDo />
         <HowWeWork />
         <section className="border-t border-line bg-paper">
           <Reveal className="mx-auto max-w-[1180px] px-6 py-20 md:px-12 md:py-24">

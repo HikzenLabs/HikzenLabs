@@ -105,4 +105,6 @@ export default function Nav({ variant }: NavProps) {
       )}
     </header>
   )
+
+  
 }
