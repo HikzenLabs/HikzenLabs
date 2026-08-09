@@ -7,8 +7,9 @@ import Team from '@/components/engineering/Team'
 import CTA from '@/components/CTA'
 import Footer from '@/components/Footer'
 import Reveal from '@/components/Reveal'
-import { stack, engineeringHero } from '@/content/site'
+import { engineeringHero } from '@/content/site'
 import WhatWeDo from '@/components/WhatWeDo'
+import Stack from '@/components/engineering/Stack'
 
 const description = engineeringHero.body
 
@@ -32,16 +33,7 @@ export default function Engineering() {
         <Capabilities />
         <WhatWeDo />
         <HowWeWork />
-        <section className="border-t border-line bg-paper">
-          <Reveal className="mx-auto max-w-[1180px] px-6 py-20 md:px-12 md:py-24">
-            <h2 className="font-display text-[28px] font-semibold tracking-[-0.02em] md:text-[40px]">
-              {stack.heading}
-            </h2>
-            <p className="mt-4 font-mono text-[16px] text-ink md:text-[18px]">
-              {stack.items.join(' · ')}
-            </p>
-          </Reveal>
-        </section>
+        <Stack />
         <Team />
         <CTA variant="engineering" />
       </main>
