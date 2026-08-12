@@ -1,21 +1,21 @@
-import Reveal from '../Reveal'
+import Reveal from './Reveal'
 import { howWeWork } from '@/content/site'
 
-// Editorial asymmetric layout: a short statement on the left, a four-stage
-// timeline on the right. Desktop only goes side-by-side at `lg:` — below
-// that the statement stacks above the process, and below `md:` the process
-// itself switches from a horizontal hairline timeline to a vertical one, not
-// a shrunk copy of the desktop version. No cards, no icons, no borders
-// around each stage — hierarchy comes from type scale and the hairline/dot
-// timeline alone, per BRAND.md.
+// Homepage's own "How We Work" — a separate, independently-authored
+// component from /engineering's (components/engineering/HowWeWork.tsx).
+// Same canonical content (content/site.ts), deliberately compact spacing
+// and no per-stage decorative motifs, so this reads as a shorter, quieter
+// beat than the engineering page's fuller treatment, and as a distinct
+// chapter from the "Based in Srinagar" section immediately after it — no
+// three-column layout, no vertical dividers, no shared spacing rhythm.
 export default function HowWeWork() {
   const { eyebrow, statement, body, stages } = howWeWork
 
   return (
-    <section className="border-t border-line bg-paper">
-      <Reveal className="mx-auto flex max-w-[1180px] flex-col gap-12 px-6 py-28 md:px-12 md:py-[134px] lg:flex-row lg:items-start lg:gap-16">
-        {/* Left — eyebrow, statement, supporting text. ~32% on desktop. */}
-        <div className="flex flex-col gap-6 lg:w-[32%] lg:shrink-0">
+    <section id="how-we-work" className="border-t border-line bg-paper">
+      <Reveal className="mx-auto flex max-w-[1180px] flex-col gap-10 px-6 py-24 md:px-12 md:py-32 lg:flex-row lg:items-start lg:gap-16">
+        {/* Left — eyebrow, statement, supporting copy. ~32% on desktop. */}
+        <div className="flex flex-col gap-5 lg:w-[32%] lg:shrink-0">
           <span className="font-mono text-[13px] uppercase tracking-[0.14em] text-ink-mut md:text-[14px]">
             {eyebrow}
           </span>
@@ -25,14 +25,14 @@ export default function HowWeWork() {
           <p className="max-w-sm text-[16px] leading-[1.65] text-ink-mut md:text-[18px]">{body}</p>
         </div>
 
-        {/* Right — the four-stage timeline. ~68% on desktop. */}
+        {/* Right — four-stage timeline, one continuous progression. ~68% on desktop. */}
         <div className="flex-1">
           {/* Desktop / tablet — horizontal hairline timeline, ≥768px. */}
           <div className="hidden md:block">
             <div className="grid grid-cols-4 gap-6 md:gap-8">
               {stages.map((stage) => (
-                <div key={stage.number} className="flex flex-col gap-3">
-                  <span className="font-display text-[28px] font-semibold tracking-[-0.02em] text-ink md:text-[36px]">
+                <div key={stage.number} className="flex flex-col gap-2">
+                  <span className="font-display text-[24px] font-semibold tracking-[-0.02em] text-ink md:text-[30px]">
                     {stage.number}
                   </span>
                   <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-ink-mut">
@@ -42,7 +42,7 @@ export default function HowWeWork() {
               ))}
             </div>
 
-            <div className="relative my-6 h-2">
+            <div className="relative my-5 h-2">
               <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-line" />
               <div className="absolute inset-0 grid grid-cols-4 gap-6 md:gap-8">
                 {stages.map((stage) => (
@@ -72,8 +72,12 @@ export default function HowWeWork() {
                     <span className="mt-2 w-px flex-1 bg-line" aria-hidden />
                   )}
                 </div>
-                <div className={index < stages.length - 1 ? 'flex flex-col gap-2 pb-10' : 'flex flex-col gap-2'}>
-                  <span className="font-display text-[24px] font-semibold tracking-[-0.02em] text-ink">
+                <div
+                  className={
+                    index < stages.length - 1 ? 'flex flex-col gap-2 pb-8' : 'flex flex-col gap-2'
+                  }
+                >
+                  <span className="font-display text-[22px] font-semibold tracking-[-0.02em] text-ink">
                     {stage.number}
                   </span>
                   <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-ink-mut">

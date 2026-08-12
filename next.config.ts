@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // BUILD.md §11 — every image is WebP through next/image.
+  images: {
+    formats: ["image/webp"],
+  },
 };
 
 export default nextConfig;

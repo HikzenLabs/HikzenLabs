@@ -2,14 +2,13 @@ import type { Metadata } from 'next'
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
 import Capabilities from '@/components/engineering/Capabilities'
+import WhatWeDo from '@/components/engineering/WhatWeDo'
 import HowWeWork from '@/components/engineering/HowWeWork'
+import Stack from '@/components/engineering/Stack'
 import Team from '@/components/engineering/Team'
 import CTA from '@/components/CTA'
 import Footer from '@/components/Footer'
-import Reveal from '@/components/Reveal'
 import { engineeringHero } from '@/content/site'
-import WhatWeDo from '@/components/WhatWeDo'
-import Stack from '@/components/engineering/Stack'
 
 const description = engineeringHero.body
 

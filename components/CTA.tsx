@@ -11,8 +11,8 @@ export default function CTA({ variant }: CTAProps) {
   const content = isEngineering ? engineeringCta : homeCta
 
   return (
-    <section className="border-t border-line bg-paper">
-      <Reveal className="mx-auto flex max-w-[1180px] flex-col gap-8 px-6 py-20 text-center md:px-12 md:py-24">
+    <section id={isEngineering ? undefined : 'contact'} className="border-t border-line bg-paper">
+      <Reveal className="mx-auto flex max-w-[1180px] flex-col gap-8 px-6 py-28 text-center md:px-12 md:py-[134px]">
         <h2 className="mx-auto max-w-xl font-display text-[28px] font-semibold tracking-[-0.02em] md:text-[40px]">
           {content.heading}
         </h2>

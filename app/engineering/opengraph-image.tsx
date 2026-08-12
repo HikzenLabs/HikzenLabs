@@ -35,7 +35,7 @@ export default async function Image() {
             gap: 16,
             fontSize: 32,
             fontWeight: 600,
-            color: '#1B3B6F',
+            color: '#5A615C',
             letterSpacing: -0.5,
             ...display,
           }}

@@ -31,7 +31,10 @@ export const brand = {
 }
 
 export const contact = {
-  email: 'hello@hikzenlabs.com',
+  // TODO: swap to hello@hikzenlabs.com once the domain inbox is set up —
+  // BUILD.md's own launch checklist and SITE-PROFESSIONAL-UPGRADE.md flag a
+  // Gmail address here as the thing to fix before launch, not ship with.
+  email: 'hikzenlabs@gmail.com',
   // Placeholder — replace with the HikzenLabs WhatsApp Business number
   // (digits only, country code first, no leading +) before launch.
   whatsappNumber: '917889912123',
@@ -53,10 +56,11 @@ export const nav = {
     logo: brand.name,
     links: [
       { label: 'Work', href: '#work' },
-      { label: 'Services', href: '#services' },
-      { label: 'Pricing', href: '#pricing' },
+      { label: 'How we work', href: '#how-we-work' },
+      { label: 'About', href: '#about' },
+      { label: 'Contact', href: '#contact' },
     ] satisfies Link[],
-    studioLink: { label: 'Studio →', href: '/engineering' } satisfies Link,
+    studioLink: { label: 'Engineering →', href: '/engineering' } satisfies Link,
     cta: { label: 'WhatsApp us', href: whatsappHref } satisfies Link,
   },
   engineering: {
@@ -96,36 +100,31 @@ export const showcase = {
   before: {
     src: '/work/showcase/before.webp',
     alt: 'A plain word-processor itinerary, unformatted',
-    // Real dimensions of the delivered asset — see note on `after` below.
-    width: 652,
-    height: 743,
+    width: 1200,
+    height: 1600,
   } satisfies ImageAsset,
   after: {
     src: '/work/showcase/after.webp',
     alt: 'The same itinerary, redesigned',
-    // Real dimensions of the delivered asset — not the spec's 1200x1600 (see
-    // README.txt). Fine as-is: the frame renders both images via
-    // object-cover inside a fixed 3:4 box, so exact source dimensions don't
-    // need to match each other or the spec for correct display.
-    width: 506,
-    height: 712,
+    width: 1200,
+    height: 1600,
   } satisfies ImageAsset,
   pages: [
     {
-      src: '/work/showcase/page-02.png',
+      src: '/work/showcase/page-02.webp',
       alt: 'Day-by-day spread',
       width: 1200,
       height: 1600,
     },
     {
-      src: '/work/showcase/page-03.png',
-      alt: 'Inclusions page',
+      src: '/work/showcase/page-03.webp',
+      alt: 'At a glance and altitude profile',
       width: 1200,
       height: 1600,
     },
     {
-      src: '/work/showcase/page-04.png',
-      alt: 'Pricing page',
+      src: '/work/showcase/page-04.webp',
+      alt: 'The route map',
       width: 1200,
       height: 1600,
     },
@@ -134,177 +133,95 @@ export const showcase = {
 }
 
 // ---------------------------------------------------------------------------
-// Homepage — Work
+// Homepage — Work. Shape follows BUILD.md §4's Project interface exactly —
+// `images` is stacked vertically per project (no carousel), not one image
+// per item, so every asset in the array is meant to render.
 // ---------------------------------------------------------------------------
 
-export interface WorkItem {
-  number: string
+export interface Project {
+  n: string
   client: string
-  description: string
-  outcome?: string
+  role: string
+  outcome: string
+  credit?: string
+  images: ImageAsset[]
   link?: Link
-  image: ImageAsset
+  caseStudy?: string
 }
 
-export const work = {
-  heading: 'Recent work',
-  items: [
-    {
-      number: '01',
-      client: 'North & Beyond',
-      description: 'Itinerary and package design.',
-      outcome: 'A print-ready template system the team refills for every new departure.',
-      link: { label: 'check on their handles →', href: 'https://www.instagram.com/p/Dbw6RbZER_j/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==' },
-      image: {
-        src: '/work/projects/northandbeyond.png',
-        alt: 'Itinerary and package design work sample',
+export const workHeading = 'Recent work'
+
+export const work = [
+  {
+    n: '01',
+    client: 'North & Beyond',
+    role: 'Editorial design · Itinerary system',
+    outcome:
+      'Two expedition documents — Zanskar and Kala Pari — built on one template the team refills for every departure. Print, PDF and the Instagram carousel all carry the same identity.',
+    images: [
+      { src: '/work/nb-hero.webp',   alt: 'Zanskar and Kala Pari expedition covers side by side', width: 1600, height: 1100 },
+      { src: '/work/nb-spread.webp', alt: 'Four interior spreads from the itinerary system',      width: 1800, height: 940 },
+      { src: '/work/nb-detail.webp', alt: 'Altitude profile from the Kala Pari itinerary',        width: 1600, height: 760 },
+    ],
+    link: { label: 'See it on Instagram', href: 'https://www.instagram.com/p/Dbw6RbZER_j/' },
+    caseStudy: '/work/north-and-beyond',
+  },
+  {
+    n: '02',
+    client: 'Climbex Adventures',
+    role: 'Website · Booking enquiry flow',
+    outcome:
+      'Enquiries now come through a structured form instead of scattered DMs.',
+    images: [
+      { src: '/work/climbex-hero.webp', alt: 'Climbex Adventures website homepage', width: 1600, height: 1100 },
+    ],
+    link: { label: 'View site', href: 'https://www.climbexadventures.com' },
+  },
+  {
+    n: '03',
+    client: 'Cactuss Jewellery',
+    role: 'Website · Product photography',
+    outcome:
+      'Shot the full range, built the store, launched in three weeks.',
+    credit: 'Product photography by Jannan Kazmi.',
+    images: [
+      {
+        src: '/work/cactuss-01.webp',
+        alt: 'Gold crescent moon pendant necklace on a light fabric backdrop',
         width: 1200,
-        height: 900,
+        height: 1600,
       },
-    },
-    {
-      number: '02',
-      client: 'Climbex Adventures',
-      description: 'Website design and build.',
-      outcome: 'Enquiries now come through a form instead of scattered DMs.',
-      link: { label: 'View site →', href: 'https://www.climbexadventures.com' },
-      image: {
-        src: '/work/projects/climbexadventures.png',
-        alt: 'Website design and build work sample',
-        width: 1200,
-        height: 900,
-      },
-    },
-    {
-      number: '03',
-      client: 'Cactuss Jewellery',
-      description: 'Product photography and website.',
-      outcome: 'Shot the full range, built the store, launched in three weeks.',
-      link: {
-        label: 'Photography with Jannan Kazmi →',
-        href: 'https://www.instagram.com/wordlesstories',
-      },
-      image: {
-        src: '/work/projects/product_shoot.jpeg',
-        alt: 'Jewellery product photography for Cactuss Jewellery',
-        width: 854,
-        height: 1280,
-      },
-    },
-  ] satisfies WorkItem[],
-}
-
-// ---------------------------------------------------------------------------
-// Homepage — Services (no prices here — BUILD.md keeps prices to Pricing only)
-// ---------------------------------------------------------------------------
-
-export interface ServiceItem {
-  name: string
-  description: string
-}
-
-export const services = {
-  heading: 'What we do',
-  subheading: 'Most clients start with one thing and come back for the rest.',
-  items: [
-    {
-      name: 'Websites & apps',
-      description:
-        'Sites people trust enough to book from. Booking forms, catalogues, online stores, and the quiet automations behind them — enquiry routing, WhatsApp replies, order alerts.',
-    },
-    {
-      name: 'Design',
-      description:
-        'Itineraries, brochures, catalogues, menus, brand identity. Print-ready, and yours to reuse.',
-    },
-    {
-      name: 'Photography & video',
-      description:
-        'Your products, shot properly. Enough images for your website, your Instagram, and your listings — from one session.',
-    },
-    {
-      name: 'Everything, together',
-      description: 'Shoot, build, launch. One team, one timeline, one invoice.',
-    },
-  ] satisfies ServiceItem[],
-}
-
-// ---------------------------------------------------------------------------
-// Homepage — Pricing (the one place prices appear)
-// ---------------------------------------------------------------------------
-
-export interface PricingItem {
-  name: string
-  price: string
-}
-
-export const pricing = {
-  heading: 'Pricing',
-  items: [
-    { name: 'Websites & apps', price: 'From ₹25,000' },
-    { name: 'Design', price: 'From ₹3,000' },
-    { name: 'Photography & video', price: 'From ₹15,000' },
-    { name: 'Everything, together', price: 'From ₹55,000' },
-  ] satisfies PricingItem[],
-}
-
-// ---------------------------------------------------------------------------
-// Homepage — Process
-// ---------------------------------------------------------------------------
-
-export interface ProcessStep {
-  name: string
-  description: string
-}
-
-export const process = {
-  heading: 'How it works',
-  steps: [
-    { name: 'Shoot', description: 'We photograph your products, your space, your work.' },
-    { name: 'Build', description: 'Website, design, and the systems behind them.' },
-    {
-      name: 'Launch',
-      description: 'You get the files, the logins, and a walkthrough. Everything is yours.',
-    },
-  ] satisfies ProcessStep[],
-}
+    ] satisfies ImageAsset[],
+  },
+] satisfies Project[]
 
 // ---------------------------------------------------------------------------
 // Homepage — About
 // ---------------------------------------------------------------------------
 
-export interface Founder {
-  name: string
-  photo: ImageAsset
+export interface AboutColumn {
+  heading: string
+  lines: string[]
 }
 
 export const about = {
-  heading: 'Two people, Srinagar',
-  paragraphs: [
-    "HikzenLabs is Faik Aijaz and Rashid Geelani. We're both developers, and between us we handle the design, the build and the shoot.",
-    "You won't be passed to an account manager. You'll talk to whoever is doing the work.",
-  ],
-  founders: [
+  eyebrow: 'Based in Srinagar',
+  headline: 'Based in Srinagar. Built to go further.',
+  body: "We're a design and engineering studio working with people and businesses to shape digital experiences, visual systems and products — from early ideas to the finished thing.",
+  columns: [
     {
-      name: 'Faik Aijaz',
-      // Placeholder — swap for the real photo, same dimensions.
-      photo: {
-        src: '/team/faik.png',
-        alt: 'Faik Aijaz, co-founder of HikzenLabs',
-        width: 800,
-        height: 1000,
-      },
+      heading: 'Design',
+      lines: ['Websites', 'Editorial', 'Visual Systems', 'Brand Experiences'],
     },
     {
-      name: 'Rashid Geelani',
-      photo: {
-        src: '/team/rashid.png',
-        alt: 'Rashid Geelani, co-founder of HikzenLabs',
-        width: 800,
-        height: 1000,
-      },
+      heading: 'Engineering',
+      lines: ['Web Applications', 'Digital Products', 'API & Integrations', 'Performance & Scale'],
     },
-  ] satisfies Founder[],
+    {
+      heading: 'Based in',
+      lines: ['Srinagar, Kashmir', 'Working remotely across locations.', '34.0837° N, 74.7973° E'],
+    },
+  ] satisfies AboutColumn[],
 }
 
 // ---------------------------------------------------------------------------
@@ -329,9 +246,7 @@ export const footer = {
     location: brand.location,
     links: [
       { label: 'Work', href: '#work' },
-      { label: 'Services', href: '#services' },
-      { label: 'Pricing', href: '#pricing' },
-      { label: 'Studio →', href: '/engineering' },
+      { label: 'Engineering →', href: '/engineering' },
     ] satisfies Link[],
   },
   engineering: {
@@ -385,33 +300,132 @@ export const whatWeTakeOn = {
 }
 
 // ---------------------------------------------------------------------------
+// /engineering — What we do (granular ten-item breakdown, sits alongside the
+// three-item "What we take on" above). No rupee figures here — BUILD.md
+// keeps prices off /engineering entirely, so the four items that originally
+// carried a price show a plain capability tag instead.
+// ---------------------------------------------------------------------------
+
+export interface WhatWeDoItem {
+  number: string
+  title: string
+  description: string
+  tag: string
+}
+
+export const engineeringWhatWeDo = {
+  heading: 'What we do',
+  subheading: 'Ten services. One team, one invoice.',
+  items: [
+    {
+      number: '01',
+      title: 'Websites that book',
+      description:
+        'Sites people trust enough to book from. Booking forms, catalogues, online stores, and the systems behind them.',
+      tag: 'Web builds',
+    },
+    {
+      number: '02',
+      title: 'Apps & custom software',
+      description:
+        'Mobile apps and internal tools built for your workflow. No off-the-shelf bloat — exactly what your business needs.',
+      tag: 'Custom builds',
+    },
+    {
+      number: '03',
+      title: 'AI integration',
+      description:
+        'Chatbots, smart enquiry routing, auto-replies, and content tools. AI that actually saves you time, not creates more work.',
+      tag: 'Smart features',
+    },
+    {
+      number: '04',
+      title: 'Travel itineraries & print',
+      description:
+        'The document system: itineraries, proposals, voucher packs, and Instagram carousels — branded templates your team refills.',
+      tag: 'Print & documents',
+    },
+    {
+      number: '05',
+      title: 'UI/UX & product design',
+      description:
+        "Interfaces that don't need a manual. Design systems, dashboards, and brand identity that holds together across every touchpoint.",
+      tag: 'Design systems',
+    },
+    {
+      number: '06',
+      title: 'Product photography',
+      description:
+        'Products, spaces, and process — shot properly. Enough images for your website, Instagram, and listings from one session.',
+      tag: 'Photography',
+    },
+    {
+      number: '07',
+      title: 'Backend & infrastructure',
+      description:
+        "Databases, APIs, payment gateways, and hosting. The parts users never see but your business can't run without.",
+      tag: 'Backend',
+    },
+    {
+      number: '08',
+      title: 'AI & automations',
+      description:
+        'Workflows that run while you sleep. Auto-enquiry routing, order alerts, scheduled posts, and follow-ups — no manual work.',
+      tag: 'Automate',
+    },
+    {
+      number: '09',
+      title: 'Engineering',
+      description:
+        'Complex problems solved simply. System architecture, performance, security, and the technical decisions that last.',
+      tag: 'Engineering',
+    },
+    {
+      number: '10',
+      title: 'Everything, together',
+      description:
+        'Shoot, build, launch. One team, one timeline, one invoice. Most clients start with one thing and come back for the rest.',
+      tag: 'End to end',
+    },
+  ] satisfies WhatWeDoItem[],
+}
+
+// ---------------------------------------------------------------------------
 // /engineering — How we work
 // ---------------------------------------------------------------------------
 
-export interface HowWeWorkItem {
-  label: string
+export interface HowWeWorkStage {
+  number: string
+  name: string
   description: string
 }
 
 export const howWeWork = {
-  heading: 'How we work',
-  items: [
-    { label: 'Direct contact.', description: 'You talk to the people writing the code.' },
+  eyebrow: 'How we work',
+  statement: 'Good work starts with clarity and ends with impact.',
+  body: 'A thoughtful, collaborative process that keeps things simple, intentional and well-built.',
+  stages: [
     {
-      label: 'Fixed scope or retainer.',
-      description: 'Whichever suits the work. Fixed scope for defined builds, retainer for ongoing.',
+      number: '01',
+      name: 'Understand',
+      description: 'We start by understanding the problem, the context and what actually matters.',
     },
     {
-      label: 'Overlapping hours.',
-      description:
-        'IST is UTC+5:30 — full working overlap with the Gulf and Europe, and our evenings meet the US East Coast morning.',
+      number: '02',
+      name: 'Shape',
+      description: 'We turn the thinking into a clear strategy, visual direction and plan.',
     },
     {
-      label: 'Your infrastructure.',
-      description:
-        'Your repos, your cloud, your accounts. We leave when the work is done and take nothing with us.',
+      number: '03',
+      name: 'Build',
+      description: 'Design and engineering come together to build it the right way.',
     },
-  ] satisfies HowWeWorkItem[],
+    {
+      number: '04',
+      name: 'Refine',
+      description: 'We test, improve and refine until everything feels just right.',
+    },
+  ] satisfies HowWeWorkStage[],
 }
 
 // ---------------------------------------------------------------------------
@@ -442,7 +456,8 @@ export interface TeamMember {
   name: string
   role: string
   linkedin: string
-  github: string
+  // Removed for now — add back once there's a GitHub link worth showing.
+  github?: string
 }
 
 export const team = {
@@ -450,16 +465,17 @@ export const team = {
   members: [
     {
       name: 'Faik Aijaz',
-      // Placeholder — confirm one-line focus area before launch.
-      role: '[one line: focus area, e.g. full-stack and AI integration]',
-      linkedin: '#',
-      github: '#',
+      // Drafted copy — confirm this actually matches before launch.
+      role: 'Product design and AI integration.',
+      linkedin: 'https://in.linkedin.com/in/faik-aijaz',
+      github: undefined,
     },
     {
       name: 'Rashid Geelani',
-      role: '[one line: focus area]',
-      linkedin: '#',
-      github: '#',
+      // Drafted copy — confirm this actually matches before launch.
+      role: 'Full-stack development and infrastructure.',
+      linkedin: 'https://in.linkedin.com/in/syed-rashid-geelani-b00719202',
+      github: undefined,
     },
   ] satisfies TeamMember[],
 }
@@ -473,4 +489,136 @@ export const engineeringCta = {
   body: "We'll tell you within a day whether we're the right fit — and if we're not, we'll say so.",
   primaryCta: { label: 'Book a call', href: contact.calLink } satisfies Link,
   secondaryCta: { label: contact.email, href: `mailto:${contact.email}` } satisfies Link,
+}
+
+// ---------------------------------------------------------------------------
+// /work/north-and-beyond — case study. BUILD.md §14: hero image · the
+// problem · the approach · the result · back link.
+// ---------------------------------------------------------------------------
+
+export const northAndBeyond = {
+  backLink: { label: '← Recent work', href: '/#work' } satisfies Link,
+  client: 'North & Beyond',
+  role: 'Editorial design · Itinerary system',
+  hero: {
+    number: '01',
+    image: {
+      src: '/work/nb-hero.webp',
+      alt: 'Zanskar and Kala Pari expedition covers side by side',
+      width: 1600,
+      height: 1100,
+    } satisfies ImageAsset,
+  },
+  problem: {
+    number: '02',
+    heading: 'The problem',
+    paragraphs: [
+      'North & Beyond runs a new expedition every few weeks — Zanskar, then Kala Pari, then whatever comes after. Each one needed its own itinerary, and there was no repeatable way to produce one.',
+      'What clients received was a plain word-processor document: unformatted, inconsistent from trip to trip, and not what a booking at this price should feel like before it has even started.',
+    ],
+  },
+  approach: {
+    number: '03',
+    heading: 'The approach',
+    paragraphs: [
+      'One template, not one document. A disciplined serif and small-caps system, a cinematic cover per expedition, an altitude profile and a hand-drawn route map for the terrain, honest inclusion tables, and a cancellation policy laid out without shame.',
+      'Every field the North & Beyond team needs to change for a new departure — dates, route, price, group size — sits in the same place on the page, every time.',
+    ],
+    images: [
+      {
+        src: '/work/nb-spread.webp',
+        alt: 'Four interior spreads from the itinerary system',
+        width: 1800,
+        height: 940,
+      },
+      {
+        src: '/work/nb-detail.webp',
+        alt: 'Altitude profile from the Kala Pari itinerary',
+        width: 1600,
+        height: 760,
+      },
+    ] satisfies ImageAsset[],
+  },
+  // The carousel showcase. `heroSlides` is the strongest 3, shown large and
+  // layered (desktop) or as a peek-scroller (mobile) — see
+  // components/work/NorthAndBeyondCarousel.tsx. `heroSlides[1]` is the
+  // initial centre slide and the only one of the seven that gets `priority`.
+  // `remainingSlides` are the other four, shown as a plain strip beneath.
+  social: {
+    number: '04',
+    heading: 'Social / Instagram',
+    body: 'The expedition story continues beyond the itinerary — translated into a visual language designed for social.',
+    heroSlides: [
+      {
+        src: '/work/nb-carousel-why.webp',
+        alt: 'Instagram carousel slide — "Why Kalapari?" over a hiker facing a glacier',
+        width: 1080,
+        height: 1350,
+      },
+      {
+        src: '/work/nb-carousel-cover.webp',
+        alt: 'Instagram carousel cover slide — Kalapari Lake Expedition, with Leo',
+        width: 1080,
+        height: 1350,
+      },
+      {
+        src: '/work/nb-carousel-for-you.webp',
+        alt: 'Instagram carousel slide — "Is this expedition for you?" over a turquoise glacial lake',
+        width: 1080,
+        height: 1350,
+      },
+    ] satisfies ImageAsset[],
+    remainingSlides: [
+      {
+        src: '/work/nb-carousel-trek.webp',
+        alt: 'Instagram carousel slide — trek essentials at a glance',
+        width: 1080,
+        height: 1350,
+      },
+      {
+        src: '/work/nb-carousel-journey.webp',
+        alt: 'Instagram carousel slide — the eight-stage route',
+        width: 1080,
+        height: 1350,
+      },
+      {
+        src: '/work/nb-carousel-quote.webp',
+        alt: 'Instagram carousel slide — a quote over a campsite photo',
+        width: 1080,
+        height: 1350,
+      },
+      {
+        src: '/work/nb-carousel-reserve.webp',
+        alt: 'Instagram carousel slide — reservations open, call to action',
+        width: 1080,
+        height: 1350,
+      },
+    ] satisfies ImageAsset[],
+    caption: { client: 'North & Beyond', label: 'Instagram carousel', year: '2026' },
+    link: {
+      label: 'See the carousel on Instagram',
+      href: 'https://www.instagram.com/p/Dbw6RbZER_j/',
+    } satisfies Link,
+  },
+  visualLanguage: {
+    number: '05',
+    heading: 'One visual language',
+    paragraphs: [
+      'The same serif system, the same restraint, the same palette — whether someone is holding the printed pack, reading the PDF, or swiping through a carousel before they have even messaged.',
+    ],
+  },
+  result: {
+    number: '06',
+    heading: 'The result',
+    paragraphs: [
+      'Two expedition documents — Zanskar and Kala Pari — built on one template the team refills for every departure, with no design work needed in between.',
+      'Print, PDF and Instagram now read as one studio, not three separate efforts stitched together after the fact.',
+    ],
+  },
+  nextProject: {
+    label: 'Next project',
+    client: 'Climbex Adventures',
+    role: 'Website · Booking enquiry flow',
+    href: '/#work',
+  },
 }

@@ -1,12 +1,13 @@
 # HikzenLabs
 
-Marketing site for a two-person studio in Srinagar.
+Marketing site for a two-person design studio in Srinagar.
 
-The build specification is @BUILD.md — follow it exactly.
-All page copy is @COPY.md — it belongs in content/site.ts, never hardcoded in components.
+Build specification: @BUILD.md — follow it exactly.
+Brand, colour and logo rules: @BRAND.md — overrides BUILD.md where they disagree.
+All page copy: @COPY.md — belongs in content/site.ts, never hardcoded.
 
 ## Rules
-- Never substitute your own palette, typefaces, or section order
-- Mobile-first: verify 375px before desktop
-- No dark mode, gradients, glassmorphism, cards with shadows, or emoji
-- Ask before adding any dependency beyond gsap and lenis
+- Never change the palette, typefaces, or section order
+- Mobile first: check 375px before desktop
+- No colour accent, no gradients, no shadows, no cards, no emoji
+- Ask before adding any new package
