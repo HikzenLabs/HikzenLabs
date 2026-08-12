@@ -11,7 +11,7 @@ export default function Hero({ variant }: HeroProps) {
 
   return (
     <section className="bg-paper">
-      <Reveal className="mx-auto flex max-w-[1180px] flex-col gap-8 px-6 py-20 md:px-12 md:py-32">
+      <Reveal className="mx-auto flex max-w-[1180px] flex-col gap-8 px-6 py-28 md:px-12 md:py-[179px]">
         <h1 className="max-w-2xl font-display text-[38px] font-semibold leading-[1.1] tracking-[-0.02em] md:text-[60px]">
           {content.heading}
         </h1>

@@ -6,6 +6,13 @@ import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { showcase } from '@/content/site'
 import Reveal from './Reveal'
 
+// Before/after must occupy the identical box and request identically-sized
+// sources — they're stacked and clip-path wiped between one another, so any
+// mismatch in requested width or crop behaviour reads as a jump cut. Shared
+// between both <Image> elements below; object-contain (never cover) so nothing
+// crops even if a future asset swap doesn't share the exact same aspect ratio.
+const FRAME_SIZES = '(min-width: 768px) 450px, 90vw'
+
 // The one signature animated moment on the site — BUILD.md §8. Everything
 // else gets the plain fade-up from <Reveal>; this gets a dedicated pinned
 // scroll-scrub wipe on desktop and a draggable divider on mobile, built via
@@ -156,7 +163,7 @@ export default function Showcase() {
 
   return (
     <section className="border-t border-line bg-paper-2">
-      <div className="mx-auto max-w-[1180px] px-6 py-20 md:px-12 md:py-24">
+      <div className="mx-auto max-w-[1180px] px-6 py-28 md:px-12 md:py-[134px]">
         <Reveal className="flex flex-col gap-3">
           <span className="text-[13px] uppercase tracking-wide text-ink-mut md:text-[14px]">
             {showcase.eyebrow}
@@ -177,8 +184,8 @@ export default function Showcase() {
                 alt={showcase.before.alt}
                 width={showcase.before.width}
                 height={showcase.before.height}
-                priority
-                className="h-full w-full object-cover"
+                sizes={FRAME_SIZES}
+                className="h-full w-full bg-paper object-contain"
               />
               <span
                 ref={beforeLabelRef}
@@ -193,8 +200,9 @@ export default function Showcase() {
                 alt={showcase.after.alt}
                 width={showcase.after.width}
                 height={showcase.after.height}
+                sizes={FRAME_SIZES}
                 priority
-                className="h-full w-full object-cover"
+                className="h-full w-full bg-paper object-contain"
               />
               <span
                 ref={afterLabelRef}
@@ -226,6 +234,7 @@ export default function Showcase() {
                   alt={page.alt}
                   width={page.width}
                   height={page.height}
+                  sizes="120px"
                   className="h-full w-auto"
                 />
               </div>

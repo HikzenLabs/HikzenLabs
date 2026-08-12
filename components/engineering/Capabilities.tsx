@@ -4,7 +4,7 @@ import { whatWeTakeOn } from '@/content/site'
 export default function Capabilities() {
   return (
     <section className="border-t border-line bg-paper-2">
-      <Reveal className="mx-auto max-w-[1180px] px-6 py-20 md:px-12 md:py-24">
+      <Reveal className="mx-auto max-w-[1180px] px-6 py-28 md:px-12 md:py-[134px]">
         <h2 className="font-display text-[28px] font-semibold tracking-[-0.02em] md:text-[40px]">
           {whatWeTakeOn.heading}
         </h2>
